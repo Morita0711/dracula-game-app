@@ -1,0 +1,459 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'SpeedRush';
+    src: url('../fonts/SpeedrushRegular-qZWp6.woff') format('woff');
+    font-display: swap;
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+.animate-border::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    bottom: 0;
+    background: #17c1f7;
+    transition: all 0.5s ease-in;
+    transform-origin: left center;
+    transform: scale(0);
+    left: 0;
+}
+
+.animate-border:hover::after {
+    transform: scale(1);
+}
+
+/* nftcard */
+.card {
+    --background: #fff;
+    --background-checkbox: #0082ff;
+    --background-image: #fff, rgba(0, 107, 175, 0.2);
+    --text-color: #666;
+    --text-headline: #000;
+    --card-shadow: #0082ff;
+    --card-height: 180px;
+    --card-width: 140px;
+    --card-radius: 12px;
+    --header-height: 30px;
+    --blend-mode: overlay;
+    --transition: 0.15s;
+    user-select: none;
+}
+.card__input {
+    position: absolute;
+    display: block;
+    outline: none;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    -webkit-appearance: none;
+}
+.card__input:checked ~ .card__body {
+    --shadow: 0 0 0 3px var(--card-shadow);
+}
+.card__input:checked ~ .card__body .card__body-cover-checkbox {
+    --check-bg: var(--background-checkbox);
+    --check-border: #fff;
+    --check-scale: 1;
+    --check-opacity: 1;
+}
+.card__input:checked ~ .card__body .card__body-cover-checkbox--svg {
+    --stroke-color: #fff;
+    --stroke-dashoffset: 0;
+}
+.card__input:checked ~ .card__body .card__body-cover:after {
+    --opacity-bg: 0;
+}
+.card__input:checked ~ .card__body .card__body-cover-image {
+    --filter-bg: grayscale(0);
+}
+.card__input:disabled ~ .card__body {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.card__input:disabled ~ .card__body:active {
+    --scale: 1;
+}
+.card__body {
+    display: grid;
+    background: var(--background);
+    max-height: var(--card-height);
+    max-width: var(--card-width);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: var(--shadow, 0 4px 4px 0 rgba(0, 0, 0, 0.02));
+    transition: transform var(--transition), box-shadow var(--transition);
+    /* transform: scale(var(--scale, 1)) translateZ(0); */
+}
+.card__body:active {
+    --scale: 0.96;
+}
+.card__body-cover {
+    --c-border: var(--card-radius) var(--card-radius) 0 0;
+    --c-width: 100%;
+    --c-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.card__body-cover:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--c-width);
+    height: var(--c-height);
+    border-radius: var(--c-border);
+    mix-blend-mode: var(--blend-mode);
+    opacity: var(--opacity-bg, 1);
+    transition: opacity var(--transition) linear;
+}
+.card__body-cover-checkbox {
+    background: var(--check-bg, var(--background-checkbox));
+    border: 2px solid var(--check-border, #fff);
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 1;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    opacity: var(--check-opacity, 0);
+    transition: transform var(--transition),
+        opacity calc(var(--transition) * 1.2) linear;
+    transform: scale(var(--check-scale, 0));
+}
+.card__body-cover-checkbox--svg {
+    width: 13px;
+    height: 11px;
+    display: inline-block;
+    vertical-align: top;
+    fill: none;
+    margin: 7px 0 0 5px;
+    stroke: var(--stroke-color, #fff);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: var(--stroke-dashoffset, 16px);
+    transition: stroke-dashoffset 0.4s ease var(--transition);
+}
+
+/* custom toastify */
+.Toastify__toast-container {
+    width: 320px;
+}
+.Toastify__toast--success {
+    border: 3px solid #17c1f7;
+    border-radius: 0;
+    background-color: #0e1646;
+    font-weight: bold;
+    color: #07bc0c;
+}
+.Toastify__toast--error {
+    border: 3px solid #17c1f7;
+    border-radius: 0;
+    background-color: #0e1646;
+    font-weight: bold;
+    color: #da5148;
+}
+
+/* button hover animation */
+/* blog hover */
+.buttons {
+    margin-top: 50px;
+    text-align: center;
+    border-radius: 30px;
+}
+.whitepaper-btn {
+    z-index: 1;
+    position: relative;
+    padding: 16px 54px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #df142c;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    transition: color 0.5s;
+    cursor: pointer;
+    border-radius: 30px;
+}
+.whitepaper-btn:before {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 4px solid #df142c;
+    border-radius: 30px;
+}
+.whitepaper-btn:after {
+    content: '';
+    z-index: -2;
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s 0.2s;
+    border-radius: 30px;
+}
+.whitepaper-btn:hover {
+    color: #ffffff;
+    border-radius: 30px;
+}
+.whitepaper-btn:hover:after {
+    transition: all 0.3s;
+    left: 0;
+    top: 0;
+    border-radius: 30px;
+}
+.whitepaper-btn__inner {
+    z-index: -1;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    background: #ffffff;
+}
+.whitepaper-btn__whitepaper {
+    position: absolute;
+    top: 2px;
+    width: 25%;
+    height: 100%;
+    background: #df142c;
+    border-radius: 100%;
+    transform: translate3d(0, 150%, 0) scale(1.7);
+    transition: transform 0.45s;
+}
+.whitepaper-btn__whitepaper:nth-child(1) {
+    left: 0%;
+    transition-delay: 0s;
+}
+.whitepaper-btn__whitepaper:nth-child(2) {
+    left: 30%;
+    transition-delay: 0.08s;
+}
+.whitepaper-btn__whitepaper:nth-child(3) {
+    left: 60%;
+    transition-delay: 0.16s;
+}
+.whitepaper-btn__whitepaper:nth-child(4) {
+    left: 90%;
+    transition-delay: 0.24s;
+}
+.whitepaper-btn:hover .whitepaper-btn__whitepaper {
+    transform: translateZ(0) scale(1.7);
+}
+/* hover effect */
+.action-button:after {
+    background: #fff;
+    content: '';
+    height: 155px;
+    left: -75px;
+    opacity: 0.2;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1);
+    width: 50px;
+    z-index: -10;
+}
+.action-button:hover:after {
+    left: 120%;
+    transition: all 1200ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.joingame-button:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: rgba(150, 147, 147, 0.25);
+    transition: all 0.3s;
+    border-radius: 10rem;
+    z-index: 2;
+}
+.joingame-button:hover {
+    color: #fff;
+}
+.joingame-button:hover:before {
+    width: 100%;
+}
+
+/* custom nprogress bar */
+#nprogress {
+    pointer-events: 'none';
+}
+#nprogress .bar {
+    top: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    background: dodgerblue;
+    box-shadow: 0 0 2px dodgerblue;
+}
+#nprogress .peg {
+    right: 0;
+    opacity: 1;
+    width: 100px;
+    height: 100%;
+    display: block;
+    position: absolute;
+    transform: rotate(3deg) translate(0px, -4px);
+    box-shadow: 0 0 10px dodgerblue;
+}
+
+/* custom wallet adapter modal style */
+.wallet-adapter-modal-wrapper {
+    background: #0e1646 !important;
+    border-radius: 0 !important;
+    border: 6px solid #17c1f7;
+}
+.wallet-adapter-modal {
+    backdrop-filter: blur(2px);
+}
+.wallet-adapter-modal-title {
+    position: relative;
+    visibility: hidden;
+    color: #17c1f7;
+}
+.wallet-adapter-modal-title::before {
+    content: 'Connect your wallet to Dracula Game';
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: visible;
+    width: 100%;
+    height: 100%;
+    padding: 84px 48px 48px;
+    font-weight: 900 !important;
+    color: #17c1f7;
+}
+.wallet-adapter-modal-overlay {
+    position: relative !important;
+}
+.wallet-adapter-modal-list li {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.wallet-adapter-button {
+    background: transparent !important;
+    font-weight: 700 !important;
+    color: #17c1f7 !important;
+}
+@media screen and (max-width: 1440px) {
+    .wallet-adapter-button {
+        font-size: 14px !important;
+    }
+}
+.wallet-adapter-button:hover {
+    background: #17c1f7 !important;
+    color: white !important;
+}
+.wallet-adapter-modal-button-close {
+    background: #272e57 !important;
+    z-index: 50;
+}
+.wallet-adapter-modal-list-more svg {
+    fill: #17c3f7 !important;
+}
+.wallet-adapter-modal-list-more {
+    color: #17c3f7 !important;
+}
+.wallet-adapter-dropdown-list {
+    border: 2px solid #17c1f7;
+    background: #0e1646 !important;
+    position: relative;
+    z-index: 9999 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+}
+.wallet-adapter-dropdown-list-active {
+    padding: 0 !important;
+    gap: 0 !important;
+    transform: translate(20%, 5%) !important;
+}
+.wallet-adapter-dropdown-list::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 5px solid #17c1f7;
+}
+.wallet-adapter-dropdown-list > li:not(:last-child) {
+    border-bottom: 2px solid #17c1f7;
+}
+.wallet-adapter-dropdown-list > li {
+    padding: 20px 40px;
+}
+.wallet-adapter-dropdown-list > li:hover {
+    background: #03157b50 !important;
+}
+/* scroll trigger progressbar */
+progress {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    border: none;
+    background: transparent;
+}
+
+progress::-webkit-progress-bar {
+    background: transparent;
+}
+
+progress::-webkit-progress-value {
+    background: linear-gradient(
+        to left,
+        #db38b5,
+        #01b3e3,
+        #25ce7b,
+        #fdc741,
+        #ff6b01,
+        #fc4236
+    );
+    background-attachment: fixed;
+}
+
+progress::-moz-progress-bar {
+    background: linear-gradient(
+        to left,
+        #db38b5,
+        #01b3e3,
+        #25ce7b,
+        #fdc741,
+        #ff6b01,
+        #fc4236
+    );
+    background-attachment: fixed;
+}

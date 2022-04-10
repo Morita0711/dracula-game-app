@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "dracula-game-e7ee1"
+  },
+  "targets": {
+    "dracula-game-e7ee1": {
+      "hosting": {
+        "production": [
+          "dracula-game-production"
+        ],
+        "staging": [
+          "dracula-game-staging"
+        ]
+      }
+    }
+  }
+}
